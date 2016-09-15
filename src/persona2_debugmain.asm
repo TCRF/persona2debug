@@ -30,7 +30,7 @@ MainLoopPatch:
 	; load debug menu overlay
 	li     a1, OverlayAddr
 	jal    LoadOverlay
-	li     a0, OverlayNum
+	li     a0, DebugOverlayNum
 	
 	; start debug menu
 	jal    DebugMenu
@@ -75,6 +75,21 @@ CheckDebugKeys:
 	
 @@end:
 	jr     ra
+	nop
+
+AddShopDebugMenu:
+	li     v1, ShopMenuDebugOption
+	sb     v1, 0(v0)
+	li     v1, ShopMenuEnd
+	jr     ra
+	sb     v1, 1(v0)
+
+.close
+
+.open ShopOverlayName, OverlayAddr
+
+.org EndGetShopPatch
+	jal    AddShopDebugMenu
 	nop
 
 .close
