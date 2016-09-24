@@ -57,3 +57,11 @@ ShopMenuEnd            equ 0x1E
 .definelabel DebugMenuCallbackParam, 0x8007CAA0
 
 .include "persona2_debugmain.asm"
+
+.open ShopOverlayName, OverlayAddr
+
+.org EndGetShopPatch
+	jal    AddShopDebugMenu
+	nop
+
+.close

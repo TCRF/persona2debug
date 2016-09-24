@@ -77,19 +77,14 @@ CheckDebugKeys:
 	jr     ra
 	nop
 
+; Eternal Punishment only - shop debug menu
+.ifdef ShopOverlayName
 AddShopDebugMenu:
 	li     v1, ShopMenuDebugOption
 	sb     v1, 0(v0)
 	li     v1, ShopMenuEnd
 	jr     ra
 	sb     v1, 1(v0)
-
-.close
-
-.open ShopOverlayName, OverlayAddr
-
-.org EndGetShopPatch
-	jal    AddShopDebugMenu
-	nop
+.endif
 
 .close
